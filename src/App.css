@@ -1,9 +1,16 @@
-body{
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
   background-color: black;
   color: whitesmoke;
   text-align: center;
   user-select: none;
 }
+
 body h1 {
   line-height: 4rem;
 }
