@@ -40,12 +40,23 @@ table th {
     font-size: 1.4rem;
 }
 
-button {
+.button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     cursor: pointer;
-    width: 85px;
+    background-color: lightgray;
+    color: black;
+    width: 90px;
     height: 60px;
-    border-radius: 20px;
-    font-size: 1.1rem;
+    border-radius: 15px;
+    font-size: 1.2rem;
+    border: 1px solid white;
+    box-shadow: 0px 0px 5px 0px whitesmoke;
+}
+
+.button:hover{
+    background-color: rgb(158, 158, 158);
 }
 
 .buttons {

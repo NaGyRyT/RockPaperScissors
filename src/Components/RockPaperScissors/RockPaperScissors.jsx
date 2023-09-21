@@ -51,9 +51,9 @@ export default function RockPaperScissors() {
   
     let Buttons = (
       <>
-        <button onClick={() => handleClick("Rock")}>Rock</button>
-        <button onClick={() => handleClick("Paper")}>Paper</button>
-        <button onClick={() => handleClick("Scissors")}>Scissors</button>
+        <div className='button' onClick={() => handleClick("Rock")}>Rock</div>
+        <div className="button" onClick={() => handleClick("Paper")}>Paper</div>
+        <div className="button" onClick={() => handleClick("Scissors")}>Scissors</div>
       </>
     );
   
