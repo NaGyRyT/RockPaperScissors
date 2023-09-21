@@ -1,0 +1,9 @@
+body{
+  background-color: black;
+  color: whitesmoke;
+  text-align: center;
+  user-select: none;
+}
+body h1 {
+  line-height: 4rem;
+}
