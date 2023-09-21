@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef} from 'react'
+import React, { useState, useEffect } from 'react'
 import './RockPaperScissors.css'
 
 export default function RockPaperScissors() {
@@ -7,17 +7,18 @@ export default function RockPaperScissors() {
     const [gameState, setGameState] = useState({
       player: 0,
       computer: 0,
-      push: 0
+      push: 0,
+      round: 1
     });
     const [winner, setWinner] = useState("Choose rock paper or scissors");
-    const shouldUseEffectRun = useRef(false);
+    const [shouldUseEffectRun, setShouldUseEffectRun] = useState(false);
   
     useEffect(() => {
-      if (shouldUseEffectRun.current) {
-        shouldUseEffectRun.current = false;
+      if (shouldUseEffectRun) {
+        setShouldUseEffectRun(false);
         decideWhoIsTheWinner();
       }
-    });
+    }, [shouldUseEffectRun]);
   
     function handleClick(rockPaperScissors) {
       setPlayerChoice(() => rockPaperScissors);
@@ -25,7 +26,19 @@ export default function RockPaperScissors() {
       setComputerChoice(
         () => RockPaperScissors[[0, 1, 2][Math.floor(Math.random() * 3)]]
       );
-      shouldUseEffectRun.current = true;
+      setShouldUseEffectRun(true);
+    }
+
+    function handleReset() {
+        setPlayerChoice("");
+        setComputerChoice("");
+        setGameState({
+            player: 0,
+            computer: 0,
+            push: 0,
+            round: 1
+          });
+        setWinner("Choose rock paper or scissors");
     }
   
     function decideWhoIsTheWinner() {
@@ -33,7 +46,6 @@ export default function RockPaperScissors() {
       if (playerChoice === computerChoice) {
         setWinner("Push");
         newGameState.push += 1;
-        setGameState(newGameState);
       } else if (
         (playerChoice === "Rock" && computerChoice === "Paper") ||
         (playerChoice === "Paper" && computerChoice === "Scissors") ||
@@ -41,12 +53,12 @@ export default function RockPaperScissors() {
       ) {
         setWinner("The winner is the Computer");
         newGameState.computer += 1;
-        setGameState(newGameState);
       } else {
         setWinner("You are the winner");
         newGameState.player += 1;
-        setGameState(newGameState);
       }
+      newGameState.round += 1;
+      setGameState(newGameState);
     }
   
     let Buttons = (
@@ -62,11 +74,16 @@ export default function RockPaperScissors() {
         <table>
           <thead>
             <tr>
-              <th colSpan="3">Game state</th>
+                <th>
+                    <div className='round'>Round {gameState.round}</div>
+                </th>
+                <th>
+                    Game state
+                </th>
+                <th>
+                    <div className='button-small' onClick={handleReset}>Reset</div>
+                </th>
             </tr>
-            {/* <tr>
-              <th colSpan="3">{winner}</th>
-            </tr> */}
           </thead>
           <tbody>
             <tr>
